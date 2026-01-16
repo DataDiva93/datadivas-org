@@ -1,0 +1,1 @@
+---\ntitle: "Community"\ndescription: "Standards, support, and shipping culture."\n---\n\nTODO: paste full content from starter pack\n

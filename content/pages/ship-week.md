@@ -1,0 +1,1 @@
+---\ntitle: "Ship Week"\ndescription: "A weekly cadence that forces momentum."\n---\n\nTODO: paste full content from starter pack\n

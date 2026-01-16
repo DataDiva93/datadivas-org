@@ -1,0 +1,1 @@
+---\ntitle: "Labs"\ndescription: "Ship labs. Build systems. Publish proof."\n---\n\nTODO: paste full content from starter pack\n

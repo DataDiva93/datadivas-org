@@ -1,0 +1,25 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+const labs = await getCollection('labs');
+---
+
+<BaseLayout title="Labs — Data Divas">
+  <main style="max-width: 820px; margin: 0 auto; padding: 32px; font-family: system-ui;">
+    <h1>Labs</h1>
+    <p>Proof-first learning. Every lab ships an artifact.</p>
+
+    <ul>
+      {labs
+        .sort((a, b) => a.data.title.localeCompare(b.data.title))
+        .map((lab) => (
+          <li>
+            <a href={`/labs/${lab.slug}`}>{lab.data.title}</a>
+            {' — '}
+            <small>{lab.data.level} · {lab.data.time_estimate}</small>
+          </li>
+        ))}
+    </ul>
+  </main>
+</BaseLayout>

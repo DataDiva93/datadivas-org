@@ -1,0 +1,48 @@
+---
+import BaseLayout from '../../layouts/BaseLayout.astro';
+import { getCollection } from 'astro:content';
+
+export async function getStaticPaths() {
+  const labs = await getCollection('labs');
+  return labs.map((lab) => ({ params: { slug: lab.slug }, props: { lab } }));
+}
+
+const { lab } = Astro.props;
+
+const labJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "LearningResource",
+  "name": lab.data.title,
+  "description": `A portfolio-grade lab: ${lab.data.title}`,
+  "educationalLevel": lab.data.level,
+  "learningResourceType": "Lab",
+  "inLanguage": "en",
+  "provider": {
+    "@type": "Organization",
+    "name": "Data Divas",
+    "areaServed": "Worldwide",
+    "url": "https://datadivas.org"
+  }
+};
+---
+
+<BaseLayout title={`${lab.data.title} — Data Divas`} jsonLd={labJsonLd}>
+  <main style="max-width: 820px; margin: 0 auto; padding: 32px; font-family: system-ui;">
+    <h1>{lab.data.title}</h1>
+    <p><strong>Level:</strong> {lab.data.level} · <strong>Time:</strong> {lab.data.time_estimate}</p>
+
+    <h2>Stack</h2>
+    <ul>{lab.data.stack.map((s) => <li>{s}</li>)}</ul>
+
+    <h2>Artifacts</h2>
+    <ul>{lab.data.artifacts.map((a) => <li>{a}</li>)}</ul>
+
+    <h2>Ship requirements</h2>
+    <ul>{lab.data.ship_requires.map((r) => <li>{r}</li>)}</ul>
+
+    <hr />
+    <article>
+      <Fragment set:html={lab.body} />
+    </article>
+  </main>
+</BaseLayout>

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://datadivas.org/sitemap-index.xml

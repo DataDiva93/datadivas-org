@@ -1,0 +1,17 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+---
+
+<BaseLayout title="Wins — Data Divas">
+  <main style="max-width: 820px; margin: 0 auto; padding: 32px; font-family: system-ui;">
+    <h1>Wins</h1>
+    <p>This is the scoreboard. Proof over hype.</p>
+
+    <h2>Submit a win</h2>
+    <p>Discord (recommended): <a href="https://discord.gg/XXUk8y5MTT">Submit in Discord</a></p>
+    <p>Optional: POST to <code>/api/wins</code> (Worker-backed) once enabled.</p>
+
+    <h2>Latest wins</h2>
+    <p>Once the Worker is live, this page can fetch from <code>/api/wins</code>.</p>
+  </main>
+</BaseLayout>

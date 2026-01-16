@@ -1,0 +1,30 @@
+{
+	"type": "module",
+	"main": "dist/_worker.js/index.js",
+	"name": "datadivas-org",
+	"compatibility_date": "2025-12-31",
+	"compatibility_flags": [
+		"nodejs_compat",
+		"global_fetch_strictly_public"
+	],
+	"assets": {
+		"binding": "ASSETS",
+		"directory": "./dist"
+	},
+	"observability": {
+		"enabled": true
+	},
+	"d1_databases": [
+		{
+			"binding": "DB",
+			"database_name": "datadivas_wins",
+			"database_id": "c8aac5ea-3821-4316-b630-1201cf90c70e"
+		}
+	],
+	"kv_namespaces": [
+		{
+			"binding": "KV",
+			"id": "a2b27cc83aa249d8a12321d7ce42de47"
+		}
+	]
+}

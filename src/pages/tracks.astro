@@ -1,0 +1,47 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const courseJsonLd = (name, description, url) => ({
+  "@context": "https://schema.org",
+  "@type": "Course",
+  "name": name,
+  "description": description,
+  "provider": {
+    "@type": "Organization",
+    "name": "Data Divas",
+    "url": "https://datadivas.org",
+    "areaServed": "Worldwide"
+  },
+  "url": url,
+  "inLanguage": "en"
+});
+---
+
+<BaseLayout
+  title="Tracks — Data Divas"
+  jsonLd={[
+    courseJsonLd(
+      "Foundations Track",
+      "Python, SQL, BI, Git, and portfolio habits for builders shipping from scratch.",
+      "https://datadivas.org/tracks#foundations"
+    ),
+    courseJsonLd(
+      "Data Engineering Track",
+      "Pipelines, orchestration, quality gates, lakehouse basics, and observability.",
+      "https://datadivas.org/tracks#data-engineering"
+    )
+  ]}
+>
+  <main style="max-width: 820px; margin: 0 auto; padding: 32px; font-family: system-ui;">
+    <h1>Tracks</h1>
+    <p>Two tracks. One standard: <strong>ship</strong>.</p>
+
+    <h2 id="foundations">Foundations Track</h2>
+    <p>For newer builders, pivots, and anyone rebuilding confidence.</p>
+    <p><a href="https://github.com/DataDiva93/datadiva93-bootcamp">Repo</a></p>
+
+    <h2 id="data-engineering">Data Engineering Track (160-hour)</h2>
+    <p>For builders ready for real pipelines + tooling.</p>
+    <p><a href="https://github.com/DataDiva93/datadiva-academy-data-engineering-bootcamp">Repo</a></p>
+  </main>
+</BaseLayout>

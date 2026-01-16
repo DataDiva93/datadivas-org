@@ -1,0 +1,252 @@
+---
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const orgJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Data Divas",
+  "url": "https://datadivas.org",
+  "description": "The data community that ships real systems—labs, repos, pipelines, demos, and portfolios.",
+  "areaServed": "Worldwide",
+  "sameAs": ["https://github.com/DataDiva93"]
+};
+---
+
+<BaseLayout title="Data Divas — The data community that ships">
+  <main class="container-narrow" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl);">
+
+    <!-- Hero Section -->
+    <section class="hero">
+      <h1>Ship real data skills.</h1>
+      <p class="hero-subtitle">
+        <strong>The data community that ships</strong> real systems — labs, repos, pipelines, demos, and portfolios.
+      </p>
+      <p class="hero-tagline">
+        <strong>For Divas, Divos, and anyone serious about building.</strong>
+      </p>
+
+      <div class="cta-group">
+        <a href="https://discord.gg/XXUk8y5MTT" class="btn btn-terminal">join_discord()</a>
+        <a href="/labs" class="btn btn-primary">start_lab()</a>
+        <a href="/roadmap" class="btn btn-outline">view_roadmap()</a>
+      </div>
+    </section>
+
+    <hr class="code-divider" />
+
+    <!-- Stats Section -->
+    <section class="stats-grid">
+      <div class="stat-card">
+        <div class="stat">160+</div>
+        <div class="stat-label">hours shipped</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat">42+</div>
+        <div class="stat-label">labs completed</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat">100%</div>
+        <div class="stat-label">real artifacts</div>
+      </div>
+    </section>
+
+    <hr class="code-divider" />
+
+    <!-- Tracks Section -->
+    <section>
+      <h2>// Tracks</h2>
+
+      <div class="card track-card">
+        <div class="card-header">
+          <span class="badge badge-green">foundations</span>
+          Foundations Track
+        </div>
+        <p>Master the core skills every data professional needs.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">python</span>
+          <span class="tech-badge">sql</span>
+          <span class="tech-badge">git</span>
+          <span class="tech-badge">bi-tools</span>
+        </div>
+        <a href="/tracks#foundations" class="btn btn-outline" style="margin-top: var(--space-md);">explore_track()</a>
+      </div>
+
+      <div class="card track-card">
+        <div class="card-header">
+          <span class="badge badge-pink">160 hours</span>
+          Data Engineering Track
+        </div>
+        <p>Build production-grade data pipelines with quality gates and observability.</p>
+        <div class="tech-stack">
+          <span class="tech-badge">docker</span>
+          <span class="tech-badge">postgres</span>
+          <span class="tech-badge">airflow</span>
+          <span class="tech-badge">dbt</span>
+          <span class="tech-badge">great-expectations</span>
+        </div>
+        <a href="/tracks#data-engineering" class="btn btn-outline" style="margin-top: var(--space-md);">explore_track()</a>
+      </div>
+    </section>
+
+    <hr class="code-divider" />
+
+    <!-- Receipts Section -->
+    <section>
+      <h2>// Receipts</h2>
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">
+        We don't just talk about data — we ship it. Here's the proof.
+      </p>
+
+      <div class="receipts-grid">
+        <a href="/labs" class="card hover-glow receipt-card">
+          <div class="card-header">Latest Labs</div>
+          <p>Browse shipped labs with real code, data, and artifacts.</p>
+          <span class="badge badge-cyan">view_labs()</span>
+        </a>
+
+        <a href="/wins" class="card hover-glow receipt-card">
+          <div class="card-header">Member Wins</div>
+          <p>See what the community is building and celebrating.</p>
+          <span class="badge badge-orange">view_wins()</span>
+        </a>
+
+        <a href="/standards/" class="card hover-glow receipt-card">
+          <div class="card-header">Documentation</div>
+          <p>In-depth guides, tutorials, and learning resources.</p>
+          <span class="badge badge-green">read_docs()</span>
+        </a>
+      </div>
+    </section>
+
+    <!-- Terminal CTA -->
+    <section class="terminal-cta">
+      <div class="terminal" style="margin-top: var(--space-2xl); font-size: 1.1rem;">
+        <span style="color: var(--text-secondary);">Ready to level up your data skills?</span><br/>
+        <a href="https://discord.gg/XXUk8y5MTT" style="color: var(--cyan); font-weight: 600;">discord.join()</a>
+      </div>
+    </section>
+
+  </main>
+</BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+  }
+
+  .hero-tagline {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    margin-bottom: var(--space-xl);
+  }
+
+  .cta-group {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Stats Grid */
+  .stats-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+    margin: var(--space-2xl) 0;
+  }
+
+  .stat-card {
+    text-align: center;
+    padding: var(--space-lg);
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+  }
+
+  /* Track Cards */
+  .track-card {
+    margin-bottom: var(--space-lg);
+  }
+
+  .track-card .card-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    margin-bottom: var(--space-md);
+  }
+
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-md);
+  }
+
+  /* Receipts Grid */
+  .receipts-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  .receipt-card {
+    text-decoration: none !important;
+    display: block;
+  }
+
+  .receipt-card p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin-bottom: var(--space-md);
+  }
+
+  .receipt-card .badge {
+    margin-top: var(--space-sm);
+  }
+
+  /* Terminal CTA */
+  .terminal-cta .terminal {
+    text-align: center;
+    padding: var(--space-xl);
+  }
+
+  .terminal-cta .terminal::before {
+    content: '';
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    .cta-group {
+      flex-direction: column;
+      align-items: stretch;
+    }
+
+    .stats-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .receipts-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

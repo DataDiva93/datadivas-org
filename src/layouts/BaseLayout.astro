@@ -1,0 +1,138 @@
+---
+import '../styles/global.css';
+const { title = 'Data Divas' } = Astro.props;
+---
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content="The data community that ships. For Divas, Divos, and anyone serious about building." />
+  </head>
+  <body>
+    <header class="site-header">
+      <nav class="container">
+        <a href="/" class="logo">$ data-divas</a>
+        <div class="nav-links">
+          <a href="/start-here">start-here</a>
+          <a href="/tracks">tracks</a>
+          <a href="/labs">labs</a>
+          <a href="/wins">wins</a>
+          <a href="/roadmap">roadmap</a>
+        </div>
+        <a href="https://discord.gg/XXUk8y5MTT" class="btn btn-primary btn-join">join_discord()</a>
+      </nav>
+    </header>
+
+    <slot />
+
+    <footer class="site-footer">
+      <div class="container">
+        <p>
+          <code>// Built by data engineers, for data engineers</code>
+        </p>
+        <p style="font-size: 0.875rem; color: var(--text-tertiary);">
+          &copy; 2025 Data Divas ·
+          <a href="https://github.com/DataDiva93">GitHub</a> ·
+          <a href="https://discord.gg/XXUk8y5MTT">Discord</a>
+        </p>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  .site-header {
+    background: var(--bg-card);
+    border-bottom: 1px solid var(--border-default);
+    padding: var(--space-md) 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    backdrop-filter: blur(10px);
+  }
+
+  .site-header nav {
+    display: flex;
+    align-items: center;
+    gap: var(--space-lg);
+  }
+
+  .logo {
+    font-family: var(--font-mono);
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: var(--purple-400) !important;
+    text-decoration: none !important;
+    display: flex;
+    align-items: center;
+  }
+
+  .logo::before {
+    content: '>';
+    color: var(--green);
+    margin-right: var(--space-xs);
+    font-weight: 700;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: var(--space-lg);
+    flex: 1;
+  }
+
+  .nav-links a {
+    font-family: var(--font-mono);
+    font-size: 0.9rem;
+    color: var(--text-secondary) !important;
+    text-decoration: none !important;
+    transition: color 0.2s ease;
+  }
+
+  .nav-links a:hover {
+    color: var(--purple-300) !important;
+  }
+
+  .btn-join {
+    font-size: 0.875rem;
+    white-space: nowrap;
+  }
+
+  .site-footer {
+    border-top: 1px solid var(--border-subtle);
+    padding: var(--space-2xl) 0;
+    margin-top: var(--space-2xl);
+    text-align: center;
+  }
+
+  .site-footer p {
+    margin-bottom: var(--space-sm);
+  }
+
+  .site-footer code {
+    background: transparent;
+    border: none;
+    color: var(--text-tertiary);
+    font-size: 0.9rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .site-header nav {
+      flex-wrap: wrap;
+      gap: var(--space-sm);
+    }
+
+    .nav-links {
+      order: 3;
+      width: 100%;
+      gap: var(--space-md);
+      margin-top: var(--space-sm);
+    }
+
+    .btn-join {
+      margin-left: auto;
+    }
+  }
+</style>
