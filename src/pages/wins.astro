@@ -22,8 +22,16 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <hr style="border: 1px solid #4b5563; margin: 3rem 0;" />
 
       <div style="margin-bottom: 3rem;">
-        <h2 style="margin-bottom: 1rem;">Leaderboard</h2>
-        <p style="color: #9ca3af;">Coming soon - community leaderboard powered by D1 database.</p>
+        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 1.5rem; flex-wrap: wrap; gap: 1rem;">
+          <h2 style="margin: 0;">Leaderboard</h2>
+          <div style="display: flex; gap: 0.25rem;">
+            <button class="filter-btn active" data-window="30d" style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; padding: 0.25rem 1rem; background: #7c3aed; border: 1px solid #8b5cf6; color: white; border-radius: 4px; cursor: pointer;">Last 30 Days</button>
+            <button class="filter-btn" data-window="all" style="font-family: 'JetBrains Mono', monospace; font-size: 0.875rem; padding: 0.25rem 1rem; background: transparent; border: 1px solid #2d1b4e; color: #9ca3af; border-radius: 4px; cursor: pointer;">All Time</button>
+          </div>
+        </div>
+        <div id="leaderboard-container" style="text-align: center; padding: 3rem; color: #9ca3af;">
+          Loading leaderboard...
+        </div>
       </div>
 
       <hr style="border: 1px solid #4b5563; margin: 3rem 0;" />
@@ -33,7 +41,12 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         <p style="color: #9ca3af; margin-bottom: 2rem;">
           Latest shipped projects from the community.
         </p>
-        <p style="color: #9ca3af;">Loading wins data from D1 database...</p>
+        <div id="wins-container" style="text-align: center; padding: 3rem; color: #9ca3af;">
+          Loading wins...
+        </div>
+        <div style="text-align: center; margin-top: 2rem;">
+          <button id="load-more-btn" class="btn btn-outline" style="display: none;">load_more()</button>
+        </div>
       </div>
 
       <hr style="border: 1px solid #4b5563; margin: 3rem 0;" />
@@ -63,3 +76,140 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     </div>
   </main>
 </BaseLayout>
+
+<script>
+  function escapeHtml(text) {
+    const div = document.createElement('div');
+    div.textContent = text;
+    return div.innerHTML;
+  }
+
+  function formatDate(dateStr) {
+    const date = new Date(dateStr);
+    const now = new Date();
+    const diffMs = now.getTime() - date.getTime();
+    const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+    if (diffDays === 0) return 'today';
+    if (diffDays === 1) return 'yesterday';
+    if (diffDays < 7) return diffDays + 'd ago';
+    if (diffDays < 30) return Math.floor(diffDays / 7) + 'w ago';
+    return date.toLocaleDateString();
+  }
+
+  async function loadLeaderboard(window) {
+    const container = document.getElementById('leaderboard-container');
+    if (!container) return;
+
+    container.innerHTML = '<p style="text-align: center; padding: 3rem; color: #9ca3af;">Loading leaderboard...</p>';
+
+    try {
+      const response = await fetch('/api/leaderboard?window=' + window);
+      const data = await response.json();
+
+      if (!response.ok || data.ok === false) {
+        const message = data.message || 'Leaderboard not configured yet.';
+        container.innerHTML = '<div class="card"><p style="color: #9ca3af;">' + message + '</p></div>';
+        return;
+      }
+
+      if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = '<div class="card"><p style="color: #9ca3af;">No wins yet. Be the first to ship!</p></div>';
+        return;
+      }
+
+      let tableHtml = '<table style="width: 100%; border-collapse: collapse; font-family: JetBrains Mono, monospace;"><thead style="background: #1a1425; border-bottom: 2px solid #5b21b6;"><tr><th style="text-align: left; padding: 1rem; color: #c4b5fd;">Rank</th><th style="text-align: left; padding: 1rem; color: #c4b5fd;">Handle</th><th style="text-align: left; padding: 1rem; color: #c4b5fd;">Wins</th><th style="text-align: left; padding: 1rem; color: #c4b5fd;">Points</th></tr></thead><tbody>';
+
+      for (let i = 0; i < data.length; i++) {
+        const entry = data[i];
+        const rank = i + 1;
+        let rankColor = '#a78bfa';
+        if (rank === 1) rankColor = '#f97316';
+        else if (rank === 2) rankColor = '#06b6d4';
+        else if (rank === 3) rankColor = '#10b981';
+
+        tableHtml += '<tr style="border-bottom: 1px solid #1f1729;"><td style="padding: 1rem; color: ' + rankColor + '; font-weight: 700;">#' + rank + '</td><td style="padding: 1rem; color: #f3f4f6; font-weight: 600;">' + escapeHtml(entry.handle) + '</td><td style="padding: 1rem;">' + entry.wins + '</td><td style="padding: 1rem; color: #c4b5fd; font-weight: 700;">' + entry.points + '</td></tr>';
+      }
+
+      tableHtml += '</tbody></table>';
+      container.innerHTML = tableHtml;
+    } catch (error) {
+      container.innerHTML = '<div class="card"><p style="color: #9ca3af;">Failed to load leaderboard. Please try again later.</p></div>';
+    }
+  }
+
+  let currentLimit = 10;
+  async function loadWins() {
+    const container = document.getElementById('wins-container');
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    if (!container) return;
+
+    container.innerHTML = '<p style="text-align: center; padding: 3rem; color: #9ca3af;">Loading wins...</p>';
+
+    try {
+      const response = await fetch('/api/wins?limit=' + currentLimit);
+      const data = await response.json();
+
+      if (!response.ok || data.ok === false) {
+        const message = data.message || 'Wins not configured yet.';
+        container.innerHTML = '<div class="card"><p style="color: #9ca3af;">' + message + '</p></div>';
+        return;
+      }
+
+      if (!Array.isArray(data) || data.length === 0) {
+        container.innerHTML = '<div class="card"><p style="color: #9ca3af;">No wins yet. Ship a lab and be the first!</p></div>';
+        return;
+      }
+
+      let winsHtml = '';
+      for (let i = 0; i < data.length; i++) {
+        const win = data[i];
+        winsHtml += '<div style="background: #1a1425; border: 1px solid #2d1b4e; border-radius: 8px; padding: 2rem; margin-bottom: 1.5rem;"><div style="display: flex; justify-content: space-between; margin-bottom: 1rem;"><span style="font-family: JetBrains Mono, monospace; font-weight: 700; color: #c4b5fd;">' + escapeHtml(win.handle) + '</span><span style="font-family: JetBrains Mono, monospace; font-size: 0.875rem; color: #6b7280;">' + formatDate(win.created_at) + '</span></div><p style="margin-bottom: 1rem; color: #f3f4f6;">' + escapeHtml(win.summary) + '</p><div style="display: flex; gap: 0.5rem; flex-wrap: wrap;"><a href="' + escapeHtml(win.repo_url) + '" target="_blank" style="font-family: JetBrains Mono, monospace; font-size: 0.875rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.1); border: 1px solid #5b21b6; color: #c4b5fd; text-decoration: none; border-radius: 4px;">view_repo()</a>';
+
+        if (win.demo_url) {
+          winsHtml += '<a href="' + escapeHtml(win.demo_url) + '" target="_blank" style="font-family: JetBrains Mono, monospace; font-size: 0.875rem; padding: 0.25rem 0.5rem; background: rgba(139, 92, 246, 0.1); border: 1px solid #5b21b6; color: #c4b5fd; text-decoration: none; border-radius: 4px;">view_demo()</a>';
+        }
+
+        winsHtml += '<span style="font-family: JetBrains Mono, monospace; font-size: 0.875rem; padding: 0.25rem 0.5rem; color: #c4b5fd;">' + win.points + ' pts</span></div></div>';
+      }
+
+      container.innerHTML = winsHtml;
+
+      if (data.length >= currentLimit && loadMoreBtn) {
+        loadMoreBtn.style.display = 'inline-block';
+      }
+    } catch (error) {
+      container.innerHTML = '<div class="card"><p style="color: #9ca3af;">Failed to load wins. Please try again later.</p></div>';
+    }
+  }
+
+  document.addEventListener('DOMContentLoaded', function() {
+    loadLeaderboard('30d');
+    loadWins();
+
+    const filterBtns = document.querySelectorAll('.filter-btn');
+    filterBtns.forEach(function(btn) {
+      btn.addEventListener('click', function() {
+        filterBtns.forEach(function(b) {
+          b.style.background = 'transparent';
+          b.style.borderColor = '#2d1b4e';
+          b.style.color = '#9ca3af';
+          b.classList.remove('active');
+        });
+        btn.style.background = '#7c3aed';
+        btn.style.borderColor = '#8b5cf6';
+        btn.style.color = 'white';
+        btn.classList.add('active');
+        const window = btn.getAttribute('data-window');
+        if (window) loadLeaderboard(window);
+      });
+    });
+
+    const loadMoreBtn = document.getElementById('load-more-btn');
+    if (loadMoreBtn) {
+      loadMoreBtn.addEventListener('click', function() {
+        currentLimit += 10;
+        loadWins();
+      });
+    }
+  });
+</script>
