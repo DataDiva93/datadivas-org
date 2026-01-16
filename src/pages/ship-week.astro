@@ -3,19 +3,335 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Ship Week — Data Divas">
-  <main style="max-width: 820px; margin: 0 auto; padding: 32px; font-family: system-ui;">
-    <h1>Ship Week</h1>
-    <p><strong>One lab. One week. One demo day.</strong></p>
+  <main class="container-narrow" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl);">
 
-    <h2>Demo Day (2 minutes)</h2>
-    <ul>
-      <li>What I built</li>
-      <li>Biggest tradeoff</li>
-      <li>What broke</li>
-      <li>How I fixed it</li>
-      <li>What I’d do next</li>
-    </ul>
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Ship Week</h1>
+      <p class="hero-subtitle">
+        <strong>One lab. One week. One demo day.</strong>
+      </p>
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
+        A weekly cadence where the community picks a lab, ships it, and demos what they built.
+      </p>
+      <div class="cta-group">
+        <a href="https://discord.gg/XXUk8y5MTT" class="btn btn-primary">join_ship_week()</a>
+        <a href="/labs" class="btn btn-outline">browse_labs()</a>
+      </div>
+    </section>
 
-    <p>Docs playbook: <a href="/ship-week">Ship Week Docs</a></p>
+    <hr class="code-divider" />
+
+    <!-- How It Works -->
+    <section>
+      <h2>// How It Works</h2>
+
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-badge">
+            <span class="badge badge-green">Monday</span>
+          </div>
+          <div class="card">
+            <div class="card-header">Lab Announced</div>
+            <p>Community votes or maintainer picks the lab for the week. Get your environment ready and read the requirements.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-badge">
+            <span class="badge badge-cyan">Tue-Fri</span>
+          </div>
+          <div class="card">
+            <div class="card-header">Ship Mode</div>
+            <p>Build, break things, fix them, and document everything. Share progress in Discord. Help others when stuck.</p>
+          </div>
+        </div>
+
+        <div class="timeline-item">
+          <div class="timeline-badge">
+            <span class="badge badge-pink">Sunday</span>
+          </div>
+          <div class="card">
+            <div class="card-header">Demo Day</div>
+            <p>2-minute demos in Discord voice. Show what you built, what broke, and how you fixed it. No slides needed—just your terminal and repo.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="code-divider" />
+
+    <!-- Demo Format -->
+    <section>
+      <h2>// Demo Format (2 minutes)</h2>
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">
+        Keep it real. Keep it short. We want to see what you shipped.
+      </p>
+
+      <div class="demo-checklist">
+        <div class="checklist-item">
+          <code class="terminal-prompt">$</code>
+          <div>
+            <strong>What I built</strong>
+            <p>Quick walkthrough of your implementation</p>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <code class="terminal-prompt">$</code>
+          <div>
+            <strong>Biggest tradeoff</strong>
+            <p>The decision that mattered most</p>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <code class="terminal-prompt">$</code>
+          <div>
+            <strong>What broke</strong>
+            <p>The gnarliest bug or blocker you hit</p>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <code class="terminal-prompt">$</code>
+          <div>
+            <strong>How I fixed it</strong>
+            <p>Your solution or workaround</p>
+          </div>
+        </div>
+        <div class="checklist-item">
+          <code class="terminal-prompt">$</code>
+          <div>
+            <strong>What I'd do next</strong>
+            <p>If you had more time, what would you improve?</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="code-divider" />
+
+    <!-- Ship Requirements -->
+    <section>
+      <h2>// Ship Requirements</h2>
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">
+        To get credit for shipping, you need these artifacts:
+      </p>
+
+      <div class="requirements-grid">
+        <div class="card">
+          <div class="tech-badge">required</div>
+          <h3 style="margin-top: var(--space-sm); margin-bottom: var(--space-sm);">Repo Link</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            Public GitHub repo with your code
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tech-badge">required</div>
+          <h3 style="margin-top: var(--space-sm); margin-bottom: var(--space-sm);">Demo or Screenshots</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            Proof that it actually works
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tech-badge">required</div>
+          <h3 style="margin-top: var(--space-sm); margin-bottom: var(--space-sm);">Write-up</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            README with tradeoffs, what broke, and the fix
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="tech-badge">required</div>
+          <h3 style="margin-top: var(--space-sm); margin-bottom: var(--space-sm);">2 Resume Bullets</h3>
+          <p style="color: var(--text-secondary); font-size: 0.95rem;">
+            How you'd describe this on your resume
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <hr class="code-divider" />
+
+    <!-- Why Ship Week -->
+    <section>
+      <h2>// Why Ship Week?</h2>
+
+      <div class="benefits-list">
+        <div class="benefit-item">
+          <span class="badge badge-green">accountability</span>
+          <p>Weekly deadline keeps you shipping, not just learning</p>
+        </div>
+        <div class="benefit-item">
+          <span class="badge badge-cyan">community</span>
+          <p>Learn from others' solutions and debugging approaches</p>
+        </div>
+        <div class="benefit-item">
+          <span class="badge badge-pink">portfolio</span>
+          <p>Build 52 real projects a year with receipts</p>
+        </div>
+        <div class="benefit-item">
+          <span class="badge badge-orange">skills</span>
+          <p>Practice explaining technical decisions under time pressure</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="terminal-cta">
+      <div class="terminal" style="margin-top: var(--space-2xl); font-size: 1.1rem; text-align: center;">
+        <span style="color: var(--text-secondary);">Ready to ship?</span><br/>
+        <a href="https://discord.gg/XXUk8y5MTT" style="color: var(--cyan); font-weight: 600;">discord.join()</a>
+      </div>
+    </section>
+
   </main>
 </BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+  }
+
+  .cta-group {
+    display: flex;
+    gap: var(--space-md);
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Timeline */
+  .timeline {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .timeline-item {
+    display: flex;
+    gap: var(--space-lg);
+    align-items: flex-start;
+  }
+
+  .timeline-badge {
+    min-width: 100px;
+    padding-top: var(--space-sm);
+  }
+
+  .timeline-item .card {
+    flex: 1;
+  }
+
+  /* Demo Checklist */
+  .demo-checklist {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .checklist-item {
+    display: flex;
+    gap: var(--space-md);
+    align-items: flex-start;
+    padding: var(--space-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+  }
+
+  .terminal-prompt {
+    font-family: var(--font-mono);
+    color: var(--green);
+    font-weight: 700;
+    font-size: 1.2rem;
+    min-width: 30px;
+  }
+
+  .checklist-item strong {
+    font-family: var(--font-mono);
+    color: var(--purple-300);
+    display: block;
+    margin-bottom: var(--space-xs);
+  }
+
+  .checklist-item p {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    margin: 0;
+  }
+
+  /* Requirements Grid */
+  .requirements-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: var(--space-lg);
+  }
+
+  /* Benefits List */
+  .benefits-list {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-md);
+  }
+
+  .benefit-item {
+    display: flex;
+    gap: var(--space-md);
+    align-items: center;
+    padding: var(--space-md);
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+  }
+
+  .benefit-item p {
+    margin: 0;
+    color: var(--text-secondary);
+  }
+
+  /* Terminal CTA */
+  .terminal-cta .terminal {
+    text-align: center;
+    padding: var(--space-xl);
+  }
+
+  .terminal-cta .terminal::before {
+    content: '';
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.2rem;
+    }
+
+    .timeline-item {
+      flex-direction: column;
+      gap: var(--space-sm);
+    }
+
+    .timeline-badge {
+      min-width: auto;
+    }
+
+    .requirements-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

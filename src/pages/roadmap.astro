@@ -3,27 +3,316 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Roadmap — Data Divas">
-  <main style="max-width: 820px; margin: 0 auto; padding: 32px; font-family: system-ui;">
-    <h1>Roadmap</h1>
+  <main class="container-narrow" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl);">
 
-    <h2>Now (MVP)</h2>
-    <ul>
-      <li>Marketing site + docs + lab index</li>
-      <li>Ship Week cadence</li>
-      <li>Wins scoreboard</li>
-    </ul>
+    <!-- Hero -->
+    <section class="hero">
+      <h1>Roadmap</h1>
+      <p class="hero-subtitle">
+        <strong>From community academy to real platform.</strong>
+      </p>
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
+        We're building in public. Here's what's shipped, what's next, and what's coming later.
+      </p>
+    </section>
 
-    <h2>Next</h2>
-    <ul>
-      <li>Automated win ingestion (D1 + KV)</li>
-      <li>Feature wins + projects</li>
-      <li>Docs expansion + troubleshooting library</li>
-    </ul>
+    <hr class="code-divider" />
 
-    <h2>Later (paid)</h2>
-    <ul>
-      <li>app.datadivas.org: profiles, progress, submissions, reviews</li>
-      <li>Managed sandboxes (BYOC first; managed AWS behind paywall)</li>
-    </ul>
+    <!-- Now (MVP) Section -->
+    <section>
+      <div class="phase-header">
+        <h2>// Now (MVP)</h2>
+        <span class="badge badge-green">shipping</span>
+      </div>
+
+      <div class="roadmap-items">
+        <div class="roadmap-item completed">
+          <div class="status-icon">✓</div>
+          <div class="item-content">
+            <h3>Marketing site + docs + lab index</h3>
+            <p>Public-facing site with purple tech aesthetic, documentation system, and browsable lab catalog.</p>
+            <div class="item-links">
+              <a href="/" class="link-btn">view_site()</a>
+              <a href="/labs" class="link-btn">browse_labs()</a>
+              <a href="/standards" class="link-btn">read_docs()</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap-item completed">
+          <div class="status-icon">✓</div>
+          <div class="item-content">
+            <h3>Ship Week cadence</h3>
+            <p>Weekly rhythm: pick a lab Monday, build all week, demo Sunday. Timeline, requirements, and demo format all documented.</p>
+            <div class="item-links">
+              <a href="/ship-week" class="link-btn">learn_more()</a>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap-item completed">
+          <div class="status-icon">✓</div>
+          <div class="item-content">
+            <h3>Wins scoreboard</h3>
+            <p>Leaderboard showing who's shipping, with latest wins feed and submission flow via Discord or API.</p>
+            <div class="item-links">
+              <a href="/wins" class="link-btn">view_leaderboard()</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="code-divider" />
+
+    <!-- Next Section -->
+    <section>
+      <div class="phase-header">
+        <h2>// Next</h2>
+        <span class="badge badge-cyan">in progress</span>
+      </div>
+
+      <div class="roadmap-items">
+        <div class="roadmap-item in-progress">
+          <div class="status-icon">→</div>
+          <div class="item-content">
+            <h3>Automated win ingestion (D1 + KV)</h3>
+            <p>Full database backend for wins submissions, with caching layer for fast leaderboard queries.</p>
+            <div class="tech-stack">
+              <span class="tech-badge">cloudflare-d1</span>
+              <span class="tech-badge">kv-store</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap-item pending">
+          <div class="status-icon">○</div>
+          <div class="item-content">
+            <h3>Feature wins + projects</h3>
+            <p>Highlight exceptional projects, create project showcase pages, and build portfolio generation tools.</p>
+          </div>
+        </div>
+
+        <div class="roadmap-item in-progress">
+          <div class="status-icon">→</div>
+          <div class="item-content">
+            <h3>Docs expansion + troubleshooting library</h3>
+            <p>Comprehensive learning resources, career guides, tool references, and community-contributed troubleshooting solutions.</p>
+            <div class="item-links">
+              <a href="/standards" class="link-btn">read_docs()</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <hr class="code-divider" />
+
+    <!-- Later (Paid) Section -->
+    <section>
+      <div class="phase-header">
+        <h2>// Later (paid)</h2>
+        <span class="badge badge-pink">future</span>
+      </div>
+
+      <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">
+        These features will be premium offerings to sustain the platform and provide advanced capabilities.
+      </p>
+
+      <div class="roadmap-items">
+        <div class="roadmap-item future">
+          <div class="status-icon">★</div>
+          <div class="item-content">
+            <h3>app.datadivas.org</h3>
+            <p>Full app experience with user profiles, progress tracking, lab submissions, peer reviews, and certification system.</p>
+            <div class="tech-stack">
+              <span class="tech-badge">profiles</span>
+              <span class="tech-badge">progress</span>
+              <span class="tech-badge">submissions</span>
+              <span class="tech-badge">reviews</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="roadmap-item future">
+          <div class="status-icon">★</div>
+          <div class="item-content">
+            <h3>Managed sandboxes</h3>
+            <p>BYOC (Bring Your Own Cloud) free tier, then managed AWS environments behind paywall. Pre-configured data engineering stacks ready to ship.</p>
+            <div class="tech-stack">
+              <span class="tech-badge">aws</span>
+              <span class="tech-badge">terraform</span>
+              <span class="tech-badge">docker</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- CTA -->
+    <section class="terminal-cta">
+      <div class="terminal" style="margin-top: var(--space-2xl); font-size: 1.1rem; text-align: center;">
+        <span style="color: var(--text-secondary);">Want to influence the roadmap?</span><br/>
+        <a href="https://discord.gg/XXUk8y5MTT" style="color: var(--cyan); font-weight: 600;">discord.join()</a>
+      </div>
+    </section>
+
   </main>
 </BaseLayout>
+
+<style>
+  .hero {
+    text-align: center;
+    margin-bottom: var(--space-2xl);
+  }
+
+  .hero h1 {
+    font-size: 3rem;
+    margin-bottom: var(--space-lg);
+  }
+
+  .hero-subtitle {
+    font-size: 1.25rem;
+    margin-bottom: var(--space-md);
+    color: var(--text-primary);
+  }
+
+  /* Phase Header */
+  .phase-header {
+    display: flex;
+    align-items: center;
+    gap: var(--space-md);
+    margin-bottom: var(--space-lg);
+  }
+
+  .phase-header h2 {
+    margin-bottom: 0;
+  }
+
+  /* Roadmap Items */
+  .roadmap-items {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-lg);
+  }
+
+  .roadmap-item {
+    display: flex;
+    gap: var(--space-lg);
+    padding: var(--space-xl);
+    background: var(--bg-card);
+    border: 1px solid var(--border-default);
+    border-radius: var(--radius-md);
+    transition: all 0.3s ease;
+  }
+
+  .roadmap-item:hover {
+    border-color: var(--purple-500);
+    box-shadow: var(--shadow-purple-sm);
+    transform: translateY(-2px);
+  }
+
+  .status-icon {
+    font-size: 2rem;
+    min-width: 40px;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .roadmap-item.completed .status-icon {
+    color: var(--green);
+  }
+
+  .roadmap-item.in-progress .status-icon {
+    color: var(--cyan);
+  }
+
+  .roadmap-item.pending .status-icon {
+    color: var(--text-tertiary);
+  }
+
+  .roadmap-item.future .status-icon {
+    color: var(--pink);
+  }
+
+  .item-content {
+    flex: 1;
+  }
+
+  .item-content h3 {
+    font-family: var(--font-mono);
+    font-size: 1.25rem;
+    color: var(--purple-300);
+    margin-bottom: var(--space-sm);
+  }
+
+  .item-content p {
+    color: var(--text-secondary);
+    margin-bottom: var(--space-md);
+    line-height: 1.6;
+  }
+
+  .item-links {
+    display: flex;
+    gap: var(--space-sm);
+    flex-wrap: wrap;
+  }
+
+  .link-btn {
+    font-family: var(--font-mono);
+    font-size: 0.875rem;
+    padding: var(--space-xs) var(--space-sm);
+    background: rgba(139, 92, 246, 0.1);
+    border: 1px solid var(--purple-700);
+    color: var(--purple-300);
+    text-decoration: none;
+    border-radius: var(--radius-sm);
+    transition: all 0.2s ease;
+  }
+
+  .link-btn:hover {
+    border-color: var(--purple-500);
+    background: rgba(139, 92, 246, 0.2);
+    transform: translateY(-1px);
+  }
+
+  .tech-stack {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-top: var(--space-sm);
+  }
+
+  /* Terminal CTA */
+  .terminal-cta .terminal {
+    text-align: center;
+    padding: var(--space-xl);
+  }
+
+  .terminal-cta .terminal::before {
+    content: '';
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .phase-header {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: var(--space-sm);
+    }
+
+    .roadmap-item {
+      flex-direction: column;
+      gap: var(--space-md);
+    }
+
+    .status-icon {
+      align-items: center;
+    }
+  }
+</style>
