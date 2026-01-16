@@ -373,6 +373,11 @@ Content-Type: application/json
     color: var(--text-tertiary);
   }
 
+  .hint-text {
+    font-size: 0.875rem;
+    margin-top: var(--space-sm);
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .hero h1 {
@@ -410,7 +415,7 @@ Content-Type: application/json
       if (!response.ok || data.ok === false) {
         const message = data.message || 'Leaderboard not configured yet.';
         const hint = data.hint || 'Check back soon!';
-        container.innerHTML = '<div class="card"><p class="text-secondary">' + message + '</p><p class="text-tertiary" style="font-size: 0.875rem; margin-top: var(--space-sm);">' + hint + '</p></div>';
+        container.innerHTML = '<div class="card"><p class="text-secondary">' + message + '</p><p class="text-tertiary hint-text">' + hint + '</p></div>';
         return;
       }
 
@@ -468,7 +473,7 @@ Content-Type: application/json
       if (!response.ok || data.ok === false) {
         const message = data.message || 'Wins not configured yet.';
         const hint = data.hint || 'Share your first win in Discord!';
-        container.innerHTML = '<div class="card"><p class="text-secondary">' + message + '</p><p class="text-tertiary" style="font-size: 0.875rem; margin-top: var(--space-sm);">' + hint + '</p></div>';
+        container.innerHTML = '<div class="card"><p class="text-secondary">' + message + '</p><p class="text-tertiary hint-text">' + hint + '</p></div>';
         return;
       }
 
