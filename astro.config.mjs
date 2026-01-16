@@ -23,8 +23,28 @@ export default defineConfig({
     },
     sidebar: [
       {
-        label: 'Docs',
-        autogenerate: { directory: '.' },
+        label: 'Getting Started',
+        items: [
+          { label: 'Home', link: '/' },
+          { label: 'Start Here', link: '/start-here' },
+          { label: 'Standards', link: '/standards' },
+          { label: 'Ship Week', link: '/ship-week' },
+          { label: 'Tracks', link: '/tracks' },
+        ],
+      },
+      {
+        label: 'Resources',
+        collapsed: false,
+        items: [
+          { label: 'Overview', link: '/resources/' },
+          { label: 'Breaking Into Data', link: '/resources/breaking-into-data' },
+          { label: 'Data Career Paths', link: '/resources/data-careers' },
+          { label: 'Data Resources', link: '/resources/data-resources' },
+          { label: 'Excel Resources', link: '/resources/excel-resources' },
+          { label: 'Azure Resources', link: '/resources/azure-resources' },
+          { label: 'SQL Resources', link: '/resources/sql-resources' },
+          { label: 'Data Engineering Study Guide', link: '/resources/data-engineering-study-guide' },
+        ],
       },
     ],
     customCss: [
