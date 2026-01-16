@@ -3,7 +3,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
 <BaseLayout title="Wins — Data Divas">
-  <main class="container" style="padding-top: var(--space-2xl); padding-bottom: var(--space-2xl);">
+  <main class="container main-padding">
 
     <!-- Hero -->
     <section class="hero">
@@ -11,7 +11,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       <p class="hero-subtitle">
         <strong>Proof over hype. Receipts over theory.</strong>
       </p>
-      <p style="color: var(--text-secondary); margin-bottom: var(--space-xl);">
+      <p class="text-secondary mb-xl">
         Every shipped lab, every demo, every repo. This is where we celebrate the work.
       </p>
       <div class="cta-group">
@@ -44,7 +44,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Recent Wins Section -->
     <section>
       <h2>// Recent Wins</h2>
-      <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">
+      <p class="text-secondary mb-lg">
         Latest shipped projects from the community.
       </p>
 
@@ -64,22 +64,22 @@ import BaseLayout from '../layouts/BaseLayout.astro';
     <!-- Submit Instructions -->
     <section class="submit-section">
       <div class="card">
-        <h2 style="margin-top: 0;">// Submit Your Win</h2>
-        <p style="color: var(--text-secondary); margin-bottom: var(--space-lg);">
+        <h2 class="mt-0">// Submit Your Win</h2>
+        <p class="text-secondary mb-lg">
           Shipped something? Share it with the community!
         </p>
 
         <div class="submit-methods">
           <div class="submit-method">
             <span class="badge badge-green">recommended</span>
-            <h3 style="margin: var(--space-sm) 0;">Discord</h3>
+            <h3 class="my-sm">Discord</h3>
             <p>Post in the #wins channel with your repo, demo, and write-up.</p>
             <a href="https://discord.gg/XXUk8y5MTT" class="btn btn-primary">discord.join()</a>
           </div>
 
           <div class="submit-method">
             <span class="badge badge-cyan">advanced</span>
-            <h3 style="margin: var(--space-sm) 0;">API</h3>
+            <h3 class="my-sm">API</h3>
             <p>POST to <code>/api/wins</code> with your submission data.</p>
             <button class="btn btn-outline" onclick="document.getElementById('api-docs').style.display='block'">
               view_api_docs()
@@ -87,7 +87,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
           </div>
         </div>
 
-        <div id="api-docs" style="display: none; margin-top: var(--space-lg);">
+        <div id="api-docs" class="api-docs-hidden mt-lg">
           <h3>API Documentation</h3>
           <pre><code>POST /api/wins
 Content-Type: application/json
@@ -397,6 +397,36 @@ Content-Type: application/json
     .leaderboard-table td {
       padding: var(--space-sm);
     }
+  }
+
+  /* Utility Classes */
+  .main-padding {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
+  .mb-xl {
+    margin-bottom: var(--space-xl);
+  }
+
+  .mb-lg {
+    margin-bottom: var(--space-lg);
+  }
+
+  .mt-0 {
+    margin-top: 0;
+  }
+
+  .mt-lg {
+    margin-top: var(--space-lg);
+  }
+
+  .my-sm {
+    margin: var(--space-sm) 0;
+  }
+
+  .api-docs-hidden {
+    display: none;
   }
 </style>
 
