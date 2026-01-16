@@ -12,8 +12,13 @@ function json(data: any, status = 200) {
   });
 }
 
-export const GET: APIRoute = async ({ locals, url }) => {
-  const env = (locals as any)?.runtime?.env as Env | undefined;
+export const GET: APIRoute = async (context) => {
+  const { locals, url } = context;
+  // Try all possible ways to access Cloudflare bindings
+  const env = ((context as any).env ||
+                (context as any).platform?.env ||
+                (locals as any)?.runtime?.env ||
+                (context as any).locals?.runtime?.env) as Env | undefined;
 
   // If bindings are not present (common during build/prerender), return a safe response.
   if (!env?.DB) {

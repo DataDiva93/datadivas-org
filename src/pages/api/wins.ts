@@ -12,12 +12,16 @@ function json(data: unknown, status = 200) {
   });
 }
 
-function getEnv(locals: unknown): Env | undefined {
-  return (locals as any)?.runtime?.env as Env | undefined;
+function getEnv(context: any): Env | undefined {
+  // Try all possible ways to access Cloudflare bindings
+  return (context.env ||
+          context.platform?.env ||
+          context.locals?.runtime?.env) as Env | undefined;
 }
 
-export const GET: APIRoute = async ({ locals, url }) => {
-  const env = getEnv(locals);
+export const GET: APIRoute = async (context) => {
+  const { locals, url } = context;
+  const env = getEnv(context);
 
   if (!env?.DB) {
     return json(
