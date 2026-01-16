@@ -125,7 +125,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
         let rankColor = '#a78bfa';
         if (rank === 1) rankColor = '#f97316';
         else if (rank === 2) rankColor = '#06b6d4';
-        else if (rank === 3) rankColor = '#10b981';
+        else if (rank === 3) rankColor = '#00ff41';
 
         tableHtml += '<tr style="border-bottom: 1px solid #1f1729;"><td style="padding: 1rem; color: ' + rankColor + '; font-weight: 700;">#' + rank + '</td><td style="padding: 1rem; color: #f3f4f6; font-weight: 600;">' + escapeHtml(entry.handle) + '</td><td style="padding: 1rem;">' + entry.wins + '</td><td style="padding: 1rem; color: #c4b5fd; font-weight: 700;">' + entry.points + '</td></tr>';
       }
