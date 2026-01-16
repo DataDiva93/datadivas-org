@@ -364,6 +364,15 @@ Content-Type: application/json
     margin: 0;
   }
 
+  /* Utility Classes */
+  .text-secondary {
+    color: var(--text-secondary);
+  }
+
+  .text-tertiary {
+    color: var(--text-tertiary);
+  }
+
   /* Responsive */
   @media (max-width: 768px) {
     .hero h1 {
@@ -399,27 +408,14 @@ Content-Type: application/json
       const data = await response.json();
 
       if (!response.ok || data.ok === false) {
-        container.innerHTML = `
-          <div class="card">
-            <p style="color: var(--text-secondary);">
-              ${data.message || 'Leaderboard not configured yet.'}
-            </p>
-            <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-top: var(--space-sm);">
-              ${data.hint || 'Check back soon!'}
-            </p>
-          </div>
-        `;
+        const message = data.message || 'Leaderboard not configured yet.';
+        const hint = data.hint || 'Check back soon!';
+        container.innerHTML = '<div class="card"><p class="text-secondary">' + message + '</p><p class="text-tertiary" style="font-size: 0.875rem; margin-top: var(--space-sm);">' + hint + '</p></div>';
         return;
       }
 
       if (!Array.isArray(data) || data.length === 0) {
-        container.innerHTML = `
-          <div class="card">
-            <p style="color: var(--text-secondary);">
-              No wins yet. Be the first to ship!
-            </p>
-          </div>
-        `;
+        container.innerHTML = '<div class="card"><p class="text-secondary">No wins yet. Be the first to ship!</p></div>';
         return;
       }
 
@@ -452,13 +448,7 @@ Content-Type: application/json
 
       container.innerHTML = table;
     } catch (error) {
-      container.innerHTML = `
-        <div class="card">
-          <p style="color: var(--text-secondary);">
-            Failed to load leaderboard. Please try again later.
-          </p>
-        </div>
-      `;
+      container.innerHTML = '<div class="card"><p class="text-secondary">Failed to load leaderboard. Please try again later.</p></div>';
     }
   }
 
@@ -476,27 +466,14 @@ Content-Type: application/json
       const data = await response.json();
 
       if (!response.ok || data.ok === false) {
-        container.innerHTML = `
-          <div class="card">
-            <p style="color: var(--text-secondary);">
-              ${data.message || 'Wins not configured yet.'}
-            </p>
-            <p style="color: var(--text-tertiary); font-size: 0.875rem; margin-top: var(--space-sm);">
-              ${data.hint || 'Share your first win in Discord!'}
-            </p>
-          </div>
-        `;
+        const message = data.message || 'Wins not configured yet.';
+        const hint = data.hint || 'Share your first win in Discord!';
+        container.innerHTML = '<div class="card"><p class="text-secondary">' + message + '</p><p class="text-tertiary" style="font-size: 0.875rem; margin-top: var(--space-sm);">' + hint + '</p></div>';
         return;
       }
 
       if (!Array.isArray(data) || data.length === 0) {
-        container.innerHTML = `
-          <div class="card">
-            <p style="color: var(--text-secondary);">
-              No wins yet. Ship a lab and be the first!
-            </p>
-          </div>
-        `;
+        container.innerHTML = '<div class="card"><p class="text-secondary">No wins yet. Ship a lab and be the first!</p></div>';
         return;
       }
 
@@ -534,13 +511,7 @@ Content-Type: application/json
         loadMoreBtn.style.display = 'inline-block';
       }
     } catch (error) {
-      container.innerHTML = `
-        <div class="card">
-          <p style="color: var(--text-secondary);">
-            Failed to load wins. Please try again later.
-          </p>
-        </div>
-      `;
+      container.innerHTML = '<div class="card"><p class="text-secondary">Failed to load wins. Please try again later.</p></div>';
     }
   }
 
