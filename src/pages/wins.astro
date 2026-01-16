@@ -2,7 +2,7 @@
 import BaseLayout from '../layouts/BaseLayout.astro';
 ---
 
-<BaseLayout title="Wins — Data Divas">
+<BaseLayout title="Wins - Data Divas">
   <main class="container main-padding">
 
     <!-- Hero -->
@@ -55,7 +55,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
       </div>
 
       <div class="load-more-container">
-        <button id="load-more-btn" class="btn btn-outline" style="display: none;">
+        <button id="load-more-btn" class="btn btn-outline load-more-hidden">
           load_more()
         </button>
       </div>
@@ -81,7 +81,7 @@ import BaseLayout from '../layouts/BaseLayout.astro';
             <span class="badge badge-cyan">advanced</span>
             <h3 class="my-sm">API</h3>
             <p>POST to <code>/api/wins</code> with your submission data.</p>
-            <button class="btn btn-outline" onclick="document.getElementById('api-docs').style.display='block'">
+            <button class="btn btn-outline" id="show-api-docs-btn">
               view_api_docs()
             </button>
           </div>
@@ -95,11 +95,11 @@ Content-Type: application/json
 {
   "handle": "your-discord-handle",
   "repo_url": "https://github.com/user/repo",
-  "demo_url": "https://demo.example.com", // optional
+  "demo_url": "https://demo.example.com",
   "summary": "Brief description of what you built",
   "broke_fix": "What broke and how you fixed it",
   "validation": "How you validated it works",
-  "resume_bullets": "• Bullet 1\n• Bullet 2"
+  "resume_bullets": "* Bullet 1\\n* Bullet 2"
 }</code></pre>
         </div>
       </div>
@@ -318,6 +318,10 @@ Content-Type: application/json
     margin-top: var(--space-xl);
   }
 
+  .load-more-hidden {
+    display: none;
+  }
+
   /* Submit Section */
   .submit-section {
     margin-top: var(--space-2xl);
@@ -365,6 +369,11 @@ Content-Type: application/json
   }
 
   /* Utility Classes */
+  .main-padding {
+    padding-top: var(--space-2xl);
+    padding-bottom: var(--space-2xl);
+  }
+
   .text-secondary {
     color: var(--text-secondary);
   }
@@ -376,33 +385,6 @@ Content-Type: application/json
   .hint-text {
     font-size: 0.875rem;
     margin-top: var(--space-sm);
-  }
-
-  /* Responsive */
-  @media (max-width: 768px) {
-    .hero h1 {
-      font-size: 2rem;
-    }
-
-    .section-header {
-      flex-direction: column;
-      align-items: flex-start;
-    }
-
-    .leaderboard-table {
-      font-size: 0.875rem;
-    }
-
-    .leaderboard-table th,
-    .leaderboard-table td {
-      padding: var(--space-sm);
-    }
-  }
-
-  /* Utility Classes */
-  .main-padding {
-    padding-top: var(--space-2xl);
-    padding-bottom: var(--space-2xl);
   }
 
   .mb-xl {
@@ -427,6 +409,27 @@ Content-Type: application/json
 
   .api-docs-hidden {
     display: none;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero h1 {
+      font-size: 2rem;
+    }
+
+    .section-header {
+      flex-direction: column;
+      align-items: flex-start;
+    }
+
+    .leaderboard-table {
+      font-size: 0.875rem;
+    }
+
+    .leaderboard-table th,
+    .leaderboard-table td {
+      padding: var(--space-sm);
+    }
   }
 </style>
 
@@ -543,7 +546,7 @@ Content-Type: application/json
       container.innerHTML = winsHtml;
 
       if (data.length >= currentLimit && loadMoreBtn) {
-        loadMoreBtn.style.display = 'inline-block';
+        loadMoreBtn.classList.remove('load-more-hidden');
       }
     } catch (error) {
       container.innerHTML = '<div class="card"><p class="text-secondary">Failed to load wins. Please try again later.</p></div>';
@@ -592,6 +595,15 @@ Content-Type: application/json
       loadMoreBtn.addEventListener('click', () => {
         currentLimit += 10;
         loadWins();
+      });
+    }
+
+    // Show API docs button
+    const showApiDocsBtn = document.getElementById('show-api-docs-btn');
+    const apiDocs = document.getElementById('api-docs');
+    if (showApiDocsBtn && apiDocs) {
+      showApiDocsBtn.addEventListener('click', () => {
+        apiDocs.classList.remove('api-docs-hidden');
       });
     }
   });
